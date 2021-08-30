@@ -1,0 +1,13 @@
+name: Update order status - Every 30 seconds cron job
+on:
+  schedule:
+    - cron: '0/30 0 0 ? * * *'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hourly cron job
+        run: |
+          curl --request POST \
+          --url 'http://localhost:3000/api/task' \
+          --header 'Authorization: Bearer ${{ secrets.ACTION_KEY }}'
